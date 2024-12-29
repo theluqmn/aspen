@@ -1,26 +1,71 @@
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-        <title>Aspen - helping you through the winter!</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Aspen - helping you through the winter!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            pointer-events: none; /* Prevent interaction */
+            opacity: 0.8;
+            animation: fall linear infinite; /* Animation for falling effect */
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh); /* Fall to the bottom */
+            }
+        }
+    </style>
+</head>
 
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-
-    <body class="bg-black">
-        <header
-        class="p-2 bg-white flex flex-col fixed z-10 w-full hover:bg-[rgba(255,255,255,0.9)] duration-500">
-            <div class="flex flex-row justify-between items-center">
-                <div class="flex flex-col">
-                    <h1 class="text-xl font-bold text-[rgb(52,152,219)]">Aspen</h1>
-
-                    <p class="text-sm text-[rgb(125,125,125)]">Helping you through the winter!</p>
-                </div>
-                <h1>Hello</h1>
+<body class="bg-[rgb(55,125,255)]">
+    <header class="p-2 bg-white flex flex-col fixed z-10 w-full hover:bg-[rgba(255,255,255,0.9)] duration-500">
+        <div class="flex flex-row justify-between items-center">
+            <div class="flex flex-col">
+                <h1 class="text-xl font-bold text-[rgb(52,152,219)]">Aspen</h1>
+                <p class="text-sm text-[rgb(125,125,125)]">Helping you through the winter</p>
             </div>
-        </header>
+            <h1>Hello</h1>
+        </div>
+    </header>
 
-        <img src="./image.png" class="w-full h-screen object-cover" />
-    </body>
+    <div class="p-4 pt-16 flex flex-row gap-4">
+        <div class="pt-16 flex flex-col gap-4">
+            <h1 class="text-5xl md:text-7xl text-white">No clue what to do this winter?</h1>
+            <p class="text-2xl md:text-4xl text-[rgb(225,225,255)]">Aspen is the right site for you!</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to create snowflakes
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.className = 'snowflake';
+            snowflake.innerHTML = '❄'; // Snowflake character
+            document.body.appendChild(snowflake);
+
+            // Randomize position and animation duration
+            const leftPosition = Math.random() * window.innerWidth;
+            const animationDuration = Math.random() * 3 + 2; // Between 2s and 5s
+            snowflake.style.left = leftPosition + 'px';
+            snowflake.style.animationDuration = animationDuration + 's';
+
+            // Remove snowflake after it falls
+            setTimeout(() => {
+                snowflake.remove();
+            }, animationDuration * 1000);
+        }
+
+        // Create snowflakes at intervals
+        setInterval(createSnowflake, 100); // Create a new snowflake every 300ms
+    </script>
+</body>
 </html>
